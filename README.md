@@ -6,3 +6,4 @@ Supports:
 - Specifying a URL to load
 - Fullscreen mode
 - Automatic refresh
+- Automatic exit

@@ -11,6 +11,7 @@ def main():
   parser.add_argument('-u', '--url', type=str, default="https://google.com", help='URL to open')
   parser.add_argument('-f', '--fullscreen', action='store_true', help='Open in fullscreen mode')
   parser.add_argument('-r', '--refresh', type=int, default=-1, help='Refresh interval in seconds (-1 to disable)')
+  parser.add_argument('-x', '--exit', type=int, default=-1, help='Exit after x seconds (-1 to disable)')
 
   args = parser.parse_args()
 
@@ -28,6 +29,11 @@ def main():
     timer = QTimer()
     timer.timeout.connect(browser.reload)
     timer.start(args.refresh * 1000) # convert to milliseconds
+  
+  if args.exit > 0:
+    timer = QTimer()
+    timer.timeout.connect(app.quit)
+    timer.start(args.exit * 1000) # convert to milliseconds
 
   app.exec_()
 
